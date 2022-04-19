@@ -33,3 +33,4 @@ EXPOSE 8888
 # The main purpose of a CMD is to provide defaults for an executing container
 # This CMD opens the jupyter notebook when you run the image
 CMD ["bash", "-c", "source /etc/bash.bashrc && jupyter-lab --ip 0.0.0.0 --no-browser --LabApp.trust_xheaders=True --LabApp.disable_check_xsrf=False --LabApp.allow_remote_access=True --LabApp.allow_origin='*'"]
+
