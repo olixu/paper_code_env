@@ -5,7 +5,7 @@ FROM continuumio/anaconda3
 RUN apt -y update && \
     apt -y upgrade && \
     apt install -y python3-pip && pip3 install --upgrade pip
-    apt -y install wget git htop vim zsh && \
+    apt install -y wget git htop vim zsh && \
     wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh && \
 #     chsh -s /bin/zsh root && \
     rm -rf /var/lib/apt/lists/*
