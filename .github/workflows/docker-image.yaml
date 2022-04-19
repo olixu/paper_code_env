@@ -28,7 +28,7 @@ jobs:  # workflow中的job
         id: meta
         uses: docker/metadata-action@v3  # 抽取项目信息，主要是镜像的tag
         with:
-          images: olixu/paper_code_env
+          images: 273601727/policy-optimizaion
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2 # docker build & push
