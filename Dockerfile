@@ -1,31 +1,26 @@
-# # Use the FROM instruction to pull other images to base your new one on
+# 基于最新的debian版本构建
 FROM debian:latest
 
-# # ENV PATH="/root/anaconda/bin/"
+# 删除python2相关
+RUN python -m pip uninstall pip && \
+    apt autoremove python --purge
+    
+# # 更新系统，包括python3
+RUN apt -y update && \
+    apt -y upgrade && \
+    apt install -y apt-utils python3-pip && \
+    apt -y install wget git htop vim && \
+    rm -rf /var/lib/apt/lists/*
 
-# # Install Python and pip (pip3)
-RUN apt-get -y update && apt-get install -y apt-utils python3-pip && pip3 install --upgrade pip && apt -y install wget git htop vim && rm -rf /var/lib/apt/lists/*
-
-
-#  It's imperative that you install jupyter, in particular, to work with Gradient
-RUN pip --no-cache-dir install jupyter 
-RUN pip --no-cache-dir install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
-
-# # install anaconda
-RUN wget https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh -O condainstall.sh && \
-    bash condainstall.sh -b -p $HOME/anaconda && eval "$(/root/anaconda/bin/conda shell.bash hook)" && \
-    rm condainstall.sh
-    # /root/anaconda/bin/conda init bash && \
-    # echo y | /root/anaconda/bin/conda create -n po python==3.8
-
-RUN /root/anaconda/bin/conda install -c conda-forge jupyterlab
-
-# Use wget to grab files of interest to have in the container
-# RUN apt-get install -y wget
+#  安装jupyter lab等python的包
+RUN pip --no-cache-dir install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113 && \
+    pip --no-cache-dir install jupyterlab cvxpy cvxpylayers matplotlib pandas && \
 
 
+# 安装jupyter lab extensions
+RUN 
 
-# Use EXPOSE to instruct the image to expose ports as needed
+# 使用8888端口访问
 EXPOSE 8888
 
 
