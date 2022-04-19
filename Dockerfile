@@ -17,10 +17,10 @@ RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch 
     conda clean -y -a 
     
    
-# 安装jupyter lab extensions
-RUN conda install -y -c conda-forge nodejs jupyterlab-lsp python-lsp-server ipympl jupyterlab-drawio && \
-    pip3 install --no-cache-dir jupyterlab-topbar jupyterlab-system-monitor lckr-jupyterlab-variableinspector  && \
-    conda clean -y -a 
+# # 安装jupyter lab extensions
+# RUN conda install -y -c conda-forge nodejs jupyterlab-lsp python-lsp-server ipympl jupyterlab-drawio && \
+#     pip3 install --no-cache-dir jupyterlab-topbar jupyterlab-system-monitor lckr-jupyterlab-variableinspector  && \
+#     conda clean -y -a 
 
 # 使用8888端口访问
 EXPOSE 8888
