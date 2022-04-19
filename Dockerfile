@@ -1,22 +1,25 @@
 # 基于最新的debian版本构建
 FROM continuumio/anaconda3
-    
+
 # # 更新系统，包括python3
 RUN apt -y update && \
     apt -y upgrade && \
-    apt -y install wget git htop vim && \
+    apt-get install -y python3-pip && pip3 install --upgrade pip && \
+    apt -y install wget git htop vim zsh && \
+    wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh && \
+    chsh -s /bin/zsh root && \
     rm -rf /var/lib/apt/lists/*
 
 #  安装jupyter lab等python的包
-# RUN pip --no-cache-dir install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113 && \
-#     pip --no-cache-dir install jupyterlab cvxpy cvxpylayers matplotlib pandas && \
-# RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch && \
-#     pip install --no-cache-dir -y jupyterlab cvxpy cvxpylayers matplotlib pandas && \
-RUN conda install -y jupyterlab
-
-
+RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch && \
+    conda install -y jupyterlab && \
+    pip3 install --no-cache-dir -y jupyterlab cvxpy cvxpylayers matplotlib pandas && \
+    
+   
 # 安装jupyter lab extensions
-# RUN 
+RUN conda install -y -c conda-forge nodejs jupyterlab-lsp python-lsp-server ipympl jupyterlab-drawio && \
+    pip3 install --no-cache-dir -y jupyterlab-topbar jupyterlab-system-monitor lckr-jupyterlab-variableinspector  && \
+    conda clean -y -a 
 
 # 使用8888端口访问
 EXPOSE 8888
