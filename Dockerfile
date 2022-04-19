@@ -10,9 +10,9 @@ RUN apt -y update && \
 #  安装jupyter lab等python的包
 # RUN pip --no-cache-dir install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113 && \
 #     pip --no-cache-dir install jupyterlab cvxpy cvxpylayers matplotlib pandas && \
-RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch && \
-    pip install --no-cache-dir -y jupyterlab cvxpy cvxpylayers matplotlib pandas && \
-    
+# RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch && \
+#     pip install --no-cache-dir -y jupyterlab cvxpy cvxpylayers matplotlib pandas && \
+RUN pip install --no-cache-dir -y jupyterlab
 
 
 # 安装jupyter lab extensions
