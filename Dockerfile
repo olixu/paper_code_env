@@ -4,11 +4,11 @@ FROM continuumio/anaconda3
 # # 更新系统，包括python3
 RUN apt -y update && \
     apt -y upgrade && \
-    apt install -y python3-pip && pip3 install --upgrade pip
+    apt install -y python3-pip && pip3 install --upgrade pip && \
     apt install -y wget git htop vim zsh && \
-#     wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh && \
-# #     chsh -s /bin/zsh root && \
-#     rm -rf /var/lib/apt/lists/*
+    wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh && \
+#     chsh -s /bin/zsh root && \
+    rm -rf /var/lib/apt/lists/*
 
 # #  安装jupyter lab等python的包
 # RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch && \
@@ -19,9 +19,9 @@ RUN conda install -y jupyterlab
     
    
 # # 安装jupyter lab extensions
-# RUN conda install -y -c conda-forge nodejs jupyterlab-lsp python-lsp-server ipympl jupyterlab-drawio && \
-#     pip3 install --no-cache-dir jupyterlab-topbar jupyterlab-system-monitor lckr-jupyterlab-variableinspector  && \
-#     conda clean -y -a 
+RUN conda install -y -c conda-forge nodejs jupyterlab-lsp python-lsp-server ipympl jupyterlab-drawio && \
+    pip3 install --no-cache-dir jupyterlab-topbar jupyterlab-system-monitor lckr-jupyterlab-variableinspector  && \
+    conda clean -y -a 
 
 # 使用8888端口访问
 EXPOSE 8888
