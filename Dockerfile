@@ -1,24 +1,22 @@
 # 基于最新的debian版本构建
-FROM debian:latest
-
-# 删除python2相关
-RUN python -m pip uninstall pip && \
-    apt autoremove python --purge
+FROM continuumio/anaconda3
     
 # # 更新系统，包括python3
 RUN apt -y update && \
     apt -y upgrade && \
-    apt install -y apt-utils python3-pip && \
     apt -y install wget git htop vim && \
     rm -rf /var/lib/apt/lists/*
 
 #  安装jupyter lab等python的包
-RUN pip --no-cache-dir install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113 && \
-    pip --no-cache-dir install jupyterlab cvxpy cvxpylayers matplotlib pandas && \
+# RUN pip --no-cache-dir install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113 && \
+#     pip --no-cache-dir install jupyterlab cvxpy cvxpylayers matplotlib pandas && \
+RUN conda install --no-cache-dir -y pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch && \
+    conda install --no-cache-dir -y jupyterlab cvxpy cvxpylayers matplotlib pandas && \
+    
 
 
 # 安装jupyter lab extensions
-RUN 
+# RUN 
 
 # 使用8888端口访问
 EXPOSE 8888
