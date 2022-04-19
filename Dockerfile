@@ -13,7 +13,8 @@ RUN apt -y update && \
 #  安装jupyter lab等python的包
 RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch && \
     conda install -y jupyterlab && \
-    pip3 install --no-cache-dir cvxpy cvxpylayers matplotlib pandas
+    pip3 install --no-cache-dir cvxpy cvxpylayers matplotlib pandas && \
+    conda clean -y -a 
     
    
 # 安装jupyter lab extensions
