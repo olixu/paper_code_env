@@ -4,11 +4,11 @@ FROM continuumio/anaconda3
 # # 更新系统，包括python3
 RUN apt -y update && \
     apt -y upgrade && \
-    apt-get install -y python3-pip && pip3 install --upgrade pip
-#     apt -y install wget git htop vim zsh && \
-#     wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh && \
+    apt install -y python3-pip && pip3 install --upgrade pip
+    apt -y install wget git htop vim zsh && \
+    wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh && \
 #     chsh -s /bin/zsh root && \
-#     rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*
 
 # #  安装jupyter lab等python的包
 # RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch && \
