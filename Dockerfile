@@ -10,11 +10,11 @@ RUN apt -y update && \
 #     chsh -s /bin/zsh root && \
     rm -rf /var/lib/apt/lists/*
 
-# # #  安装jupyter lab等python的包
-# RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch && \
-# #     conda install -y jupyterlab && \
-#     pip3 install --no-cache-dir cvxpy cvxpylayers matplotlib pandas jupyterlab-language-pack-zh-CN && \
-#     conda clean -y -a     
+# #  安装jupyter lab等python的包
+RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch && \
+#     conda install -y jupyterlab && \
+    pip3 install --no-cache-dir cvxpy cvxpylayers matplotlib pandas jupyterlab-language-pack-zh-CN && \
+    conda clean -y -a     
    
 # # 安装jupyter lab extensions
 RUN conda install -y -c conda-forge nodejs jupyterlab-lsp python-lsp-server ipympl jupyterlab-drawio && \
