@@ -19,6 +19,7 @@ RUN apt -y update && \
 # # 安装jupyter lab extensions
 RUN conda install -y -c conda-forge nodejs jupyterlab-lsp python-lsp-server ipympl jupyterlab-drawio && \
     pip3 install --no-cache-dir jupyterlab-topbar jupyterlab-system-monitor lckr-jupyterlab-variableinspector  && \
+    pip3 install --no-cache-dir cvxpy cvxpylayers matplotlib pandas jupyterlab-language-pack-zh-CN && \
     conda clean -y -a 
 
 # 使用8888端口访问
