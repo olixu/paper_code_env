@@ -5,7 +5,7 @@ FROM continuumio/anaconda3
 RUN apt -y update && \
     apt -y upgrade && \
     apt install -y python3-pip && pip3 install --upgrade pip && \
-    apt install -y wget git htop vim zsh && \
+    apt install -y wget git htop vim zsh texlive texlive-latex-extra texlive-fonts-recommended dvipng cm-super && \
     wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sh && \
 #     chsh -s /bin/zsh root && \
     rm -rf /var/lib/apt/lists/*
@@ -18,8 +18,12 @@ RUN apt -y update && \
    
 # # 安装jupyter lab extensions
 RUN conda install -y -c conda-forge nodejs jupyterlab-lsp python-lsp-server ipympl jupyterlab-drawio && \
+    conda config --add channels https://conda.anaconda.org/gurobi && \
+    conda install -y gurobi && \
     pip3 install --no-cache-dir jupyterlab-topbar jupyterlab-system-monitor lckr-jupyterlab-variableinspector  && \
-    pip3 install --no-cache-dir cvxpy cvxpylayers matplotlib pandas jupyterlab-language-pack-zh-CN && \
+    pip3 install --no-cache-dir SciencePlots tensorboard tensorwaves[jax] symengine casadi stable-baselines3 gym cvxpy cvxpylayers matplotlib pandas jupyterlab-language-pack-zh-CN && \
+    pip3 install --no-cache-dir attrs==21.4.0 && \
+    pip3 install --no-cache-dir --upgrade jax[cuda] jaxlib -f https://storage.googleapis.com/jax-releases/jax_releases.html
     conda clean -y -a 
 
 # 使用8888端口访问
