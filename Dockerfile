@@ -23,7 +23,7 @@ RUN conda install -y -c conda-forge nodejs jupyterlab-lsp python-lsp-server ipym
     pip3 install --no-cache-dir jupyterlab-topbar jupyterlab-system-monitor lckr-jupyterlab-variableinspector  && \
     pip3 install --no-cache-dir SciencePlots tensorboard tensorwaves[jax] symengine casadi stable-baselines3 gym cvxpy cvxpylayers matplotlib pandas jupyterlab-language-pack-zh-CN && \
     pip3 install --no-cache-dir attrs==21.4.0 && \
-    pip3 install --no-cache-dir --upgrade jax[cuda] jaxlib -f https://storage.googleapis.com/jax-releases/jax_releases.html
+    pip3 install --no-cache-dir --upgrade jax[cuda] jaxlib -f https://storage.googleapis.com/jax-releases/jax_releases.html && \
     conda clean -y -a 
 
 # 使用8888端口访问
