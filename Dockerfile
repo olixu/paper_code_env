@@ -17,7 +17,8 @@ RUN apt -y update && \
 #     conda clean -y -a     
    
 # # 安装jupyter lab extensions
-RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.2 -c pytorch && \
+# RUN conda install -y pytorch torchvision torchaudio cudatoolkit=11.2 -c pytorch && \
+RUN conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit=11.2 -c pytorch -c conda-forge && \
     conda install -y -c conda-forge nodejs jupyterlab-lsp python-lsp-server ipympl jupyterlab-drawio && \
     conda config --add channels https://conda.anaconda.org/gurobi && \
     conda install -y gurobi && \
